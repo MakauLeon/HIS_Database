@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patients Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            text-align: center;
+        }
+        
+        h1 {
+            color: navy;
+        }
+
+        #registrationForm {
+            margin: 0 auto;
+            width: 60%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #registrationForm h2 {
+            color: teal;
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="email"],
+        input[type="radio"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .gender-radio-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button[type="submit"] {
+            background-color: teal;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patients Registration Form</h1>
+    <form id="registrationForm">
+        <div>
+            <h2>Patient Details</h2>
+            <input type="tel" name="telephone" placeholder="Telephone" required><br>
+            <input type="text" name="firstName" placeholder="First Name" required>
+            <input type="text" name="lastName" placeholder="Last Name" required><br>
+            <input type="date" name="dateOfBirth" required><br>
+            <input type="text" name="idNumber" placeholder="ID Number" required><br>
+            <input type="text" name="address" placeholder="Address" required><br>
+            <input type="text" name="county" placeholder="County" required><br>
+            <input type="text" name="subCounty" placeholder="Sub County" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <div class="gender-radio-group">
+                Gender: <input type="radio" name="gender" value="Male" required> Male
+                        <input type="radio" name="gender" value="Female" required> Female
+            </div>
+            <input type="text" name="maritalStatus" placeholder="Marital Status" required><br>
+        </div>
+
+        <div>
+            <h2>Next of Kin</h2>
+            <input type="text" name="kinName" placeholder="Name" required><br>
+            <input type="date" name="kinDateOfBirth" required><br>
+            <input type="text" name="kinIdNumber" placeholder="ID Number" required><br>
+            <div class="gender-radio-group">
+                Gender: <input type="radio" name="kinGender" value="Male" required> Male
+                        <input type="radio" name="kinGender" value="Female" required> Female
+            </div>
+            <input type="text" name="relationship" placeholder="Relationship" required><br>
+            <input type="tel" name="kinTelephone" placeholder="Telephone" required><br>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("registrationForm");
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Send data to server or perform other actions
+                console.log(data);
+
+                // Reset the form
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
