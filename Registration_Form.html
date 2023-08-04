@@ -98,24 +98,35 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const form = document.getElementById("registrationForm");
-
+    
             form.addEventListener("submit", function(event) {
                 event.preventDefault();
-
+    
                 const formData = new FormData(form);
-
+    
                 const data = {};
                 formData.forEach((value, key) => {
                     data[key] = value;
                 });
-
-                // Send data to server or perform other actions
-                console.log(data);
-
-                // Reset the form
-                form.reset();
+    
+                // Send data to Google Apps Script Web App using JSONP
+                const callbackFunctionName = "handleResponse"; 
+                const script = document.createElement('script');
+                script.src = "https://script.google.com/macros/s/AKfycbxEs0BCw7tymWn5t0gcYnvaxqAnuYxNoO9R2YrajXo/exec?callback=handleResponse&" + new URLSearchParams(data);
+                document.body.appendChild(script);
             });
         });
+
+        // Callback function for JSONP response
+        function handleResponse(response) {
+            console.log(response);
+            if (response === "Success") {
+                alert("Form submitted successfully!");
+            } else {
+                alert("Error submitting form.");
+            }
+            document.getElementById("registrationForm").reset();
+        }
     </script>
 </body>
 </html>
